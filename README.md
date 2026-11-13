@@ -107,3 +107,38 @@ docker compose config --quiet
 
 CI runs formatting, tests, build, and Compose configuration validation on pushes
 to `dev` and `master`, and pull requests targeting either branch.
+
+## Branch and release workflow
+
+```text
+feature/* or fix/* -> dev -> staging -> master
+```
+
+Implement changes on separate feature/fix branches based on `dev`, then merge
+reviewed pull requests into `dev`. Promote groups of integrated changes into
+`staging` for batch validation, and then into `master` for release. Do not write
+features directly on `dev` or skip staging for release promotion.
+
+The remaining M0 setup/documentation work is authorized directly on `dev`.
+New feature and fix work follows the separate-branch workflow above.
+
+CI currently runs for pushes and pull requests on `dev` and `master` only;
+`staging` is not yet included in its trigger configuration. Validate staging
+batches before promoting them.
+
+## Roadmap and release plan
+
+The [confirmed ecosystem release plan](docs/RELEASE_PLAN.md) covers work across
+the specification, crates, clients, CLI, registry, examples, and planned Molecule
+tooling. Follow progress on the [public project board](https://github.com/orgs/ckb-idl/projects/1)
+and review the [project proposal](https://talk.nervos.org/t/dis-ckb-idl-interface-description-language-and-discoverability-for-ckb-scripts/11031).
+
+## Contributing and security
+
+See [CONTRIBUTION.md](CONTRIBUTION.md) for development and pull request guidance,
+and [SECURITY.md](SECURITY.md) for vulnerability reporting and trust boundaries.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE). Third-party dependencies
+retain their respective licenses.
